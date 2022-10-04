@@ -21,5 +21,5 @@ proc runcmd(ctx: Context) {.async.} =
 
 let app = newApp(settings=settings)
 app.get("/", hello)
-app.get("/run", runcmd)
+app.post("/run", runcmd)
 app.run()
