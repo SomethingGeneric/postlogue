@@ -2,6 +2,11 @@ import std/strutils
 
 import prologue
 
+let settings = newSettings(appName = "app",
+    debug = true,
+    port = Port(9090),
+)
+
 proc hello*(ctx: Context) {.async.} =
     resp "go away"
 
@@ -14,7 +19,7 @@ proc runcmd(ctx: Context) {.async.} =
     else:
         resp "PHONY run " & script & " from " & repo
 
-let app = newApp()
+let app = newApp(settings=settings)
 app.get("/", hello)
 app.get("/run", runcmd)
 app.run()
