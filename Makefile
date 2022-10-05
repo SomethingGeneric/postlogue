@@ -6,5 +6,10 @@ build:
 build-release:
 	nim c -o:bin/release/postlogue -d:release app.nim
 
+setup:
+	nim c setup.nim
+	./setup
+	rm setup
+
 do: build
 	./bin/debug/postlogue

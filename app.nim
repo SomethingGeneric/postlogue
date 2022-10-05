@@ -1,10 +1,20 @@
 import std/strutils
 
 import prologue
+import yaml/serialization, streams
 
-let settings = newSettings(appName = "app",
-    debug = true,
-    port = Port(9090),
+type Settings = object
+    port : int
+    debug : bool
+
+var settingsFile = newFileStream("settings.yaml")
+var customSettings = Settings()
+load(settingsFile, customSettings)
+settingsFile.close()
+
+let settings = newSettings(appName = "Postlogue",
+    debug = customSettings.debug,
+    port = Port(customSettings.port),
 )
 
 proc hello*(ctx: Context) {.async.} =
