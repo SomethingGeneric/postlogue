@@ -1,22 +1,31 @@
 import yaml/serialization, streams
 import strutils, typetraits
+import os
 
 type Settings = object
     port : int
     debug : bool
 
-stdout.write "Port number: "
-let customPort = stdin.readline.parseInt
+var customPort = 0
+var doDebug = false
 
-stdout.write "Debug (Y/n): "
-let debug_toggle = stdin.readline
+let cmdArgs = os.commandLineParams()
+if cmdArgs.len() > 0 and cmdArgs[0] == "-ni":
+    customPort = 9090
+    doDebug = false
+else:
+    stdout.write "Port number: "
+    customPort = stdin.readline.parseInt
 
-var do_debug = false
+    stdout.write "Debug (Y/n): "
+    let debugToggle = stdin.readline
 
-if debug_toggle != "n":
-    do_debug = true
+    doDebug = false
 
-let ourSettings = Settings(port:customPort, debug:do_debug)
+    if debugToggle != "n":
+        doDebug = true
+
+let ourSettings = Settings(port:customPort, debug:doDebug)
 
 var settingsFile = newFileStream("settings.yaml", fmWrite)
 dump(ourSettings, settingsFile)

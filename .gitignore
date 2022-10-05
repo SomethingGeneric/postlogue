@@ -4,4 +4,7 @@ nimblecache/
 htmldocs/
 
 bin/
+dist/
 settings.yaml
+*.tgz
+setup

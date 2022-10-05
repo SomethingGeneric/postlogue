@@ -11,7 +11,7 @@ type Settings = object
 let cmdArgs = os.commandLineParams()
 
 var configPath = "settings.yaml"
-if cmdArgs[0] == "-c":
+if cmdArgs.len() > 0 and cmdArgs[0] == "-c":
     configPath = cmdArgs[1]
 
 echo "Config path is: ", configPath
