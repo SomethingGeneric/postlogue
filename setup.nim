@@ -12,7 +12,7 @@ var doDebug = false
 let cmdArgs = os.commandLineParams()
 if cmdArgs.len() > 0 and cmdArgs[0] == "-ni":
     customPort = 9090
-    doDebug = false
+    doDebug = true
 else:
     stdout.write "Port number: "
     customPort = stdin.readline.parseInt
