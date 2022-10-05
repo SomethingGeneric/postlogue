@@ -7,7 +7,7 @@ if [[ ! "$EUID" == "0" ]]; then
     exit
 fi
 
-[[ ! -d /etc/postlogue ]] && mkdir /etc/postlogue
+[[ ! -d /etc/postlogue/flows ]] && mkdir -p /etc/postlogue/flows
 
 cp settings.yaml /etc/postlogue/.
 cp sample.service /etc/systemd/system/postlogue.service
