@@ -1,10 +1,14 @@
 # postlogue
 
-Simple webhook to shell handler using Nim and Prologue
+Simple webhook to shell handler using Rust and Rocket.rs
 
-## Building:
-* `nimble install yaml prologue`
-* `make setup`
-* `make {build,build-release,do}`
+## Settings
+```yaml
+port: 9090
+debug: true
+flowsDir: foo
+```
 
-https://planety.github.io/prologue/coreapi/naive/request.html#body%2CRequest
+## Notes on Gitea:
+* Webhook has a `ref` key if it's a commit
+* Webhook has a `action` key for PR's
