@@ -1,4 +1,4 @@
 PHONY: test
 
 test:
-	cargo run
+	ROCKET_PORT=9090 ROCKET_ADDRESS=0.0.0.0 cargo run
